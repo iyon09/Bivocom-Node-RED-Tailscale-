@@ -1,19 +1,34 @@
+
+echo "_______________________________________________________________________________________________"
+echo "__________________________________This script is made by Danial________________________________"
+echo "_______________________________________________________________________________________________"
 #!/bin/bash
 
 # Update package lists
+echo "Task : Updating the system"
 sudo apt update
+echo "Task : Updating Complete"
+echo "______________________________________________________________________________________________"
 
 # Install CURL and NANO
+echo "Task : Installing Nano and Curl"
 sudo apt install -y nano curl
+echo "Task : Installing Nano and Curl Complete"
+echo "_____________________________________________________________________________________________"
 
 # Install NVM (Node Version Manager)
+echo "Task : Inatalling npm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # Source NVM
 source ~/.bashrc
 
 # Install Node.js (version 18)
+
+echo "Task : Inatalling npm"
 nvm install 18
+echo "Task : Inatalling npm complete"
+echo "___________________________________________________________________________________________"
 
 # Set Node.js 18 as Default
 nvm use 18
@@ -24,6 +39,8 @@ node -v
 npm -v
 
 # Install Node-RED globally
+
+echo "Task : Conf Node Start When Reboot"
 sudo env "PATH=$PATH" npm install -g --unsafe-perm node-red
 
 # Start Node-RED to verify installation
@@ -51,6 +68,9 @@ Environment=\"NODE_OPTIONS=--max_old_space_size=1280\"
 [Install]
 WantedBy=multi-user.target" | sudo tee /etc/systemd/system/nodered.service > /dev/null
 
+
+echo "Task : Conf Complete"
+echo "_______________________________________________________________________________________________"
 # Reload the systemd daemon to recognize the new service
 sudo systemctl daemon-reload
 
@@ -61,6 +81,7 @@ sudo systemctl restart nodered
 sudo systemctl status nodered
 
 # Install Tailscale
+echo "Task : Inatalling Tailscale"
 sudo mkdir -p /etc/apt/sources.list.d/
 echo "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/tailscale.list > /dev/null
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg > /dev/null
@@ -70,7 +91,8 @@ sudo apt update
 
 # Install Tailscale
 sudo apt install -y tailscale
-
+echo "Task : Inatalling Tailscale complete"
+echo "_______________________________________________________________________________________________"
 # Enable and start Tailscale
 sudo systemctl enable tailscaled --now
 sudo tailscale up
