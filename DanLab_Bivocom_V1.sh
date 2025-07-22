@@ -72,13 +72,13 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/nodered.service > /de
 echo "Task : Conf Complete"
 echo "_______________________________________________________________________________________________"
 # Reload the systemd daemon to recognize the new service
-sudo systemctl daemon-reload
+#sudo systemctl daemon-reload
 
 # Restart Node-RED service
-sudo systemctl restart nodered
+#sudo systemctl restart nodered
 
 # Check Node-RED service status
-sudo systemctl status nodered
+#sudo systemctl status nodered
 
 # Install Tailscale
 echo "Task : Inatalling Tailscale"
@@ -95,6 +95,17 @@ echo "Task : Inatalling Tailscale complete"
 echo "_______________________________________________________________________________________________"
 # Enable and start Tailscale
 sudo systemctl enable tailscaled --now
-sudo tailscale up
+#sudo tailscale up
+
+# Reload the systemd daemon to recognize the new service
+sudo systemctl daemon-reload
+
+# Restart Node-RED service
+sudo systemctl restart nodered
+
+# Check Node-RED service status
+sudo systemctl status nodered
 
 echo "Installation complete! Node-RED and Tailscale should now be running."
+
+
